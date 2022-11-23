@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from "gatsby"
 
+require("dotenv").config()
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: ``,
@@ -9,7 +11,15 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-source-craft`,
+      options: {
+        craftGqlToken: process.env.CRAFTGQL_TOKEN,
+        craftGqlUrl: process.env.CRAFTGQL_URL,
+      }
+    },
+  ],
 }
 
 export default config
